@@ -1,0 +1,22 @@
+<? echo View::partial("consultorio/header_citas",false,array("idhistoria"=>$idhistoria)) ?>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+           <? echo View::partial("consultorio/menu_citas",false,array("idhistoria"=>$idhistoria)) ?>
+
+        </div>
+        <div class="span10">
+            <div>
+                <? echo View::content() ?>
+            </div>
+            <?
+            $dt = new DataTable($citas);
+            $dt->addHeaders('id', 'profesional', 'fecha', 'tipohora_id', 'cancelada', 'creado_at', 'historia_id','editar','eliminar');
+            $dt->addFields('id', 'profesional_id', 'fecha', 'tipohora_id', 'cancelada', 'creado_at', 'historia_id');
+            $dt->imgLink('figuras/editar.png', "cita/modificar");
+            $dt->imgLinkConfirm('figuras/eliminar.png', "cita/eliminar/$idhistoria", '', '¿Realmente desea eliminar?');
+            echo $dt->render('class="table table-bordered table-striped"');
+            ?>
+        </div>
+    </div>
+</div>

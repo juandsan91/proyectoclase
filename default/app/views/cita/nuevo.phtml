@@ -1,0 +1,31 @@
+<? echo View::partial("consultorio/header_citas",false,array("idhistoria"=>$idhistoria)) ?>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("consultorio/menu_citas", false, array("idhistoria" => $idhistoria)) ?>
+
+        </div>
+        <div class="span10">
+            <div>
+                <? echo View::content() ?>
+            </div>
+            <? echo Form::open() ?>
+             <table>
+                <tr><td style="width: 90%"><legend>Crear nueva cita</legend>
+            </td><td style="width: 10%"><? echo Form::submit("Guardar","class='btn btn-primary'")?></td></tr>
+            </table>
+            <? echo Form::label("Profesional", "profesional_id")?>
+            <? echo Form::dbSelect("cita.profesional_id", "nombre", null, null, null) ?>
+           <? echo Form::label("Fecha", "fecha")?>
+            <? echo Form::date("cita.fecha", null, null) ?>
+            <? echo Form::label("Hora", "hora")?>
+            <? echo Form::dbSelect("cita.tipohora_id", "nombre", null, null, null) ?>
+            <? echo Form::hidden("cita.historia_id", null, $idhistoria) ?>
+            <? echo Form::close() ?>
+        </div>
+    </div>
+</div>
+
+
+
+

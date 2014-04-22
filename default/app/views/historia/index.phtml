@@ -1,0 +1,62 @@
+<? echo View::partial("consultorio/header_historias") ?>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("consultorio/menu_historias") ?>
+
+        </div>
+        <div class="span10">
+            <div>
+                <? echo View::content() ?>
+            </div>
+            <div>
+                <? echo Form::open("historia/index", "POST", "class='form-inline'") ?>
+                Buscar por: 
+
+                <?
+                $comboBusqueda = array('IDENTIFICACION', 'APELLIDO');
+
+                echo Form::select("comboBusqueda", $comboBusqueda, "IDENTIFICACION");
+                echo Form::text("textoBusqueda", "class='input-medium search-query'");
+                echo Form::submit("Buscar", "class='btn btn-danger'")
+                ?>
+                <? echo Form::close() ?>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead><tr style="text-align:center;font-weight:bold;">
+                        <th>Identificación</th>
+                        <th>Apellidos</th>
+                        <th>Nombres</th>
+                        <th>Teléfono</th>
+                        <th>Acudiente</th>
+                        <th>Tel acudiente</th>
+                        <th>Modificar</th>
+                        <th>Eliminar</th>
+                        <th>Consultas</th>
+                        <th>Citas</th>
+                    </tr></thead>   
+
+                <tbody>
+                    <? foreach ($historias as $obj) { ?>
+                        <tr>
+                            <td><? echo $obj->identificacion ?></td>
+                            <td><? echo $obj->apellidos ?></td>
+                            <td><? echo $obj->nombres ?></td>
+                            <td><? echo $obj->telefono1 ?></td>
+                            <td><? echo $obj->acudiente ?></td>
+                            <td><? echo $obj->telefonoacudiente ?></td>
+                            <td><? echo Html::linkAction("modificar/$obj->id", Html::img("figuras/editar.png")) ?></td>
+                            <td><? echo Html::linkAction("eliminar/$obj->id", Html::img("figuras/eliminar.png")) ?></td>
+                            <td><? echo Html::link("consulta/index/$obj->id", Html::img("figuras/medico.png")) ?></td>
+                            <td><? echo Html::link("cita/index/$obj->id", Html::img("figuras/cita.png")) ?></td>
+                        </tr>
+                    <? } ?> 
+                </tbody>
+                <tfoot>
+                    <tr><th colspan="100"><div class="paginador-tabla"><span style="float:right;margin-right:20px;"><b>Total registros: 2</b></span></div></th></tr>
+                </tfoot>
+            </table> 
+        </div>
+    </div>
+</div>

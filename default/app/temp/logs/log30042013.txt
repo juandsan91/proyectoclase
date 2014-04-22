@@ -1,0 +1,2 @@
+[Tue, 30 Apr 13 06:39:09 -0400][DEBUG] DESCRIBE `historia`
+[Tue, 30 Apr 13 06:39:09 -0400][DEBUG] SELECT id,tipoidentificacion_id,identificacion,tipoprograma_id,tipoeps_id,nombres,fechanacimiento,procedencia,residencia,creado_at,telefono1,telefono2,tipoestadocivil_id,acudiente,telefonoacudiente,tipogenero_id,antecedentesfami,antecedentespersonales,apellidos,habitos,tiporegimen_id,carneteps,tipozona_id,menarquia,ciclosregulares,escala,gestaciones,edadiniciosexual,nroparejas,antinfecciones,citologias FROM historia

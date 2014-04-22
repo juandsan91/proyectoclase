@@ -1,0 +1,101 @@
+
+<? echo View::partial("consultorio/header_historias") ?>
+
+<!-- SECCIONES -->
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("consultorio/menu_historias") ?>
+        </div>
+        <div class="span10">
+            <div><? echo View::content()?></div>
+            <? echo Form::open() ?>
+            <table>
+                <tr><td style="width: 90%"><legend>Crear nueva historia</legend>
+            </td><td style="width: 10%"><? echo Form::submit("Guardar","class='btn btn-primary'")?></td></tr>
+            </table>
+            
+            <div class="tabbable"> 
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">Historia</a></li>
+                    <li><a href="#tab2" data-toggle="tab">Datos personales</a></li>
+                    <li><a href="#tab3" data-toggle="tab">Antecedentes</a></li>
+                    <li><a href="#tab4" data-toggle="tab">Antecedentes ginecológicos</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <div><? echo Form::label("Tipo identificación:","tipoidentificacion")?>                        
+                        <? echo Form::dbSelect("tipoidentificacion.tipoidentificacion_id", "nombre") ?></div>
+                        <div> <?echo Form::label("Historia clínica [Identificación]","historia.identificacion")?></div>
+                        <div> <? echo Form::text("historia.identificacion", "class='input-large' placeholder='Historia clínica'") ?></div>
+                        <div> <?echo Form::label("Nombres","historia.nombres")?></div>
+                        <div> <? echo Form::text("historia.nombres", "class='input-large' placeholder='Nombres' value='hola'") ?></div>
+                        <div> <?echo Form::label("Apellidos","historia.apellidos")?></div>
+                        <div><? echo Form::text("historia.apellidos", "class='input-large' placeholder='Apellidos'") ?></div>
+                        <div><? echo Form::label("Programa", "tipoprograma")?>
+                        <? echo Form::dbSelect("tipoprograma.tipoprograma_id", "nombre") ?></div>
+                        <div><? echo Form::label("EPS", "tipoeps")?>
+                        <? echo Form::dbSelect("tipoeps.tipoeps_id", "nombre") ?></div>
+                        <div> <? echo Form::label("Tipo régimen", "tiporegimen")?>
+                        <? echo Form::dbSelect("tiporegimen.tiporegimen_id", "nombre") ?></div>
+                        <div> <?echo Form::label("Carnet EPS","historia.carneteps")?></div>
+                       <div><? echo Form::text("historia.carneteps", "class='input-large' placeholder='Número de carnet'") ?></div>
+                        
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                       
+                        <div> <?echo Form::label("Teléfono 1","historia.telefono1")?></div>
+                        <div><? echo Form::text("historia.telefono1", "class='input-xlarge' placeholder='Teléfono 1'") ?></div>
+                        <div> <?echo Form::label("Teléfono 2","historia.telefono2")?></div>
+                        <div><? echo Form::text("historia.telefono2", "class='input-xlarge' placeholder='Teléfono 2'") ?></div>
+                        <div> <?echo Form::label("Acudiente","historia.acudiente")?></div>
+                        <div><? echo Form::text("historia.acudiente", "class='input-xlarge' placeholder='Acudiente'") ?></div>
+                        <div> <?echo Form::label("Teléfono acudiente","historia.telefonoacudiente")?></div>
+                        <div><? echo Form::text("historia.telefonoacudiente", "class='input-xlarge' placeholder='Telefono acudiente'") ?></div>
+                        <div><? echo Form::label("Fecha nacimiento:","fechanacimiento")?>
+                        <? echo Form::date("historia.fechanacimiento")?></div>
+                        <div><? echo Form::label("Genero","tipogenero")?>
+                        <? echo Form::dbSelect("tipogenero.tipogenero_id", "nombre") ?></div>
+                        <div><? echo Form::label("Estado civil","tipoestadocivil")?>
+                        <? echo Form::dbSelect("tipoestadocivil.tipoestadocivil_id", "nombre") ?></div>
+                        <div> <?echo Form::label("Ciudad de procedencia","historia.procedencia")?></div>
+                        <div><? echo Form::text("historia.procedencia", "class='input-xlarge' placeholder='Ciudad procedencia'") ?></div>
+                        <div> <?echo Form::label("Residencia","historia.residencia")?></div>
+                        <div><? echo Form::text("historia.residencia", "class='input-xlarge' placeholder='Residencia'") ?></div>
+                        <div><? echo Form::label("Tipo zona residencia:","tipozona")?>
+                        <? echo Form::dbSelect("tipozona.tipozona_id", "nombre") ?></div>
+                    </div>
+                    <div class="tab-pane" id="tab3">
+                        <div>Antecedentes personales</div>
+                        <div><? echo Form::textarea("historia.antecedentespersonales", "class='input-xlarge' placeholder='Escriba aquí'") ?></div>
+                        <div>Antecedentes familiares</div> 
+                        <div><? echo Form::textarea("historia.antecedentesfami", "class='input-xlarge' placeholder='Escriba aquí'") ?></div>
+                        <div>Hábitos</div> 
+                         <div><? echo Form::textarea("historia.habitos", "class='input-xlarge' placeholder='Escriba aquí'") ?></div>
+                        
+                    </div>
+                     <div class="tab-pane" id="tab4">
+                        
+                         <div>Menarquia</div> 
+                        <div><? echo Form::textarea("historia.menarquia", "class='input-xlarge' placeholder='Escriba aquí'") ?></div>
+                        <div>Ciclos regulares</div>
+                        <div><? echo Form::textarea("historia.ciclosregulares", "class='input-xlarge' placeholder='Escriba aquí'") ?></div>
+                        <div>Escala</div>
+                         <div><? echo Form::textarea("historia.escala", "class='input-xlarge' placeholder='Escriba aquí'") ?></div>
+                          <div>Gestaciones</div>
+                         <div><? echo Form::textarea("historia.gestaciones", "class='input-xlarge' placeholder='Escriba aquí'") ?></div>
+                          <div>Edad inicio sexual</div>
+                         <div><? echo Form::textarea("historia.edadiniciosexual", "class='input-xlarge' placeholder='Escriba aquí'") ?></div>
+                        <div>Número parejas</div>
+                         <div><? echo Form::textarea("historia.nroparejas", "class='input-xlarge' placeholder='Escriba aquí'") ?></div>
+                          <div>Antecedentes de infecciones</div>
+                         <div><? echo Form::textarea("historia.antinfecciones", "class='input-xlarge' placeholder='Escriba aquí'") ?></div>
+                         <div>Citologías</div>
+                         <div><? echo Form::textarea("historia.citologias", "class='input-xlarge' placeholder='Escriba aquí'") ?></div>
+                    </div>
+                </div>
+            </div>
+            <? echo Form::close() ?>
+        </div>
+    </div>
+</div>

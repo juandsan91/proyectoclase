@@ -1,0 +1,199 @@
+<? echo View::partial("consultorio/header_consultas", false, array("idhistoria" => $idhistoria)) ?>
+
+<!-- SECCIONES -->
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("consultorio/menu_consultas", false, array("idhistoria" => $idhistoria)) ?>
+        </div>
+        <div class="span10">
+            <div><? echo View::content() ?></div>
+            <? echo Form::open() ?>
+            <table>
+                <tr><td style="width: 90%"><legend>Crear nueva consulta</legend>
+            </td><td style="width: 10%"><? echo Form::submit("Guardar consulta", "class='btn btn-primary'") ?></td></tr>
+    </table>
+
+    <div class="tabbable">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1principal" data-toggle="tab">Anamnesis</a></li>
+            <li><a href="#tab2principal" data-toggle="tab">Consulta</a></li>
+            <li><a href="#tab3principal" data-toggle="tab">Tratamiento</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1principal">
+                <!--Datos de la consulta  -->
+
+                <table>
+                    <tr><td style="width: 90%"><legend>Datos de la historia</legend>
+                </td><td style="width: 10%">
+                <? echo Form::hidden("idhistoria", null, $obj->id) ?></td></tr>
+        </table>
+
+        <div class="tabbable"> 
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab">Historia</a></li>
+                <li><a href="#tab2" data-toggle="tab">Datos personales</a></li>
+                <li><a href="#tab3" data-toggle="tab">Antecedentes</a></li>
+                <li><a href="#tab4" data-toggle="tab">Antecedentes ginecológicos</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab1">
+                    <div><? echo Form::label("Tipo identificación:", "tipoidentificacion") ?>                        
+                        <? echo Form::dbSelect("tipoidentificacion.tipoidentificacion_id", "nombre", null, null, null, $obj->tipoidentificacion_id) ?></div>
+                    <div> <? echo Form::label("Historia clínica [Identificación]", "historia.identificacion") ?></div>
+                    <div> <? echo Form::text("historia.identificacion", "class='input-large' placeholder='Historia clínica'", "$obj->identificacion") ?></div>
+                    <div> <? echo Form::label("Nombres", "historia.nombres") ?></div>
+                    <div> <? echo Form::text("historia.nombres", "class='input-large' placeholder='Nombres'", "$obj->nombres") ?></div>
+                    <div> <? echo Form::label("Apellidos", "historia.apellidos") ?></div>
+                    <div><? echo Form::text("historia.apellidos", "class='input-large' placeholder='Apellidos'", "$obj->apellidos") ?></div>
+                    <div><? echo Form::label("Programa", "tipoprograma") ?>
+                        <? echo Form::dbSelect("tipoprograma.tipoprograma_id", "nombre", null, null, null, "$obj->tipoprograma_id") ?></div>
+                    <div><? echo Form::label("EPS", "tipoeps") ?>
+                        <? echo Form::dbSelect("tipoeps.tipoeps_id", "nombre", null, null, null, $obj->tipoeps_id) ?></div>
+                    <div> <? echo Form::label("Tipo régimen", "tiporegimen") ?>
+                        <? echo Form::dbSelect("tiporegimen.tiporegimen_id", "nombre", null, null, null, $obj->tiporegimen_id) ?></div>
+                    <div> <? echo Form::label("Carnet EPS", "historia.carneteps") ?></div>
+                    <div><? echo Form::text("historia.carneteps", "class='input-large' placeholder='Número de carnet'", "$obj->carneteps") ?></div>
+
+                </div>
+                <div class="tab-pane" id="tab2">
+
+                    <div> <? echo Form::label("Teléfono 1", "historia.telefono1") ?></div>
+                    <div><? echo Form::text("historia.telefono1", "class='input-xlarge' placeholder='Teléfono 1'", $obj->telefono1) ?></div>
+                    <div> <? echo Form::label("Teléfono 2", "historia.telefono2") ?></div>
+                    <div><? echo Form::text("historia.telefono2", "class='input-xlarge' placeholder='Teléfono 2'", $obj->telefono2) ?></div>
+                    <div> <? echo Form::label("Acudiente", "historia.acudiente") ?></div>
+                    <div><? echo Form::text("historia.acudiente", "class='input-xlarge' placeholder='Acudiente'", $obj->acudiente) ?></div>
+                    <div> <? echo Form::label("Teléfono acudiente", "historia.telefonoacudiente") ?></div>
+                    <div><? echo Form::text("historia.telefonoacudiente", "class='input-xlarge' placeholder='Telefono acudiente'", $obj->telefonoacudiente) ?></div>
+                    <div><? echo Form::label("Fecha nacimiento:", "fechanacimiento") ?>
+                        <? echo Form::date("historia.fechanacimiento", null, null, $obj->fechanacimiento) ?></div>
+                    <div><? echo Form::label("Genero", "tipogenero") ?>
+                        <? echo Form::dbSelect("tipogenero.tipogenero_id", "nombre", null, null, null, $obj->tipogenero_id) ?></div>
+                    <div><? echo Form::label("Estado civil", "tipoestadocivil") ?>
+                        <? echo Form::dbSelect("tipoestadocivil.tipoestadocivil_id", "nombre", null, null, null, $obj->tipoestadocivil_id) ?></div>
+                    <div> <? echo Form::label("Ciudad de procedencia", "historia.procedencia") ?></div>
+                    <div><? echo Form::text("historia.procedencia", "class='input-xlarge' placeholder='Ciudad procedencia'", $obj->procedencia) ?></div>
+                    <div> <? echo Form::label("Residencia", "historia.residencia") ?></div>
+                    <div><? echo Form::text("historia.residencia", "class='input-xlarge' placeholder='Residencia'", $obj->residencia) ?></div>
+                    <div><? echo Form::label("Tipo zona residencia:", "tipozona") ?>
+                        <? echo Form::dbSelect("tipozona.tipozona_id", "nombre", null, null, null, $obj->tipozona_id) ?></div>
+                </div>
+                <div class="tab-pane" id="tab3">
+                    <div>Antecedentes personales</div>
+                    <div><? echo Form::textarea("historia.antecedentespersonales", "class='input-xlarge' placeholder='Escriba aquí'", $obj->antecedentespersonales) ?></div>
+                    <div>Antecedentes familiares</div> 
+                    <div><? echo Form::textarea("historia.antecedentesfami", "class='input-xlarge' placeholder='Escriba aquí'", $obj->antecedentesfami) ?></div>
+                    <div>Hábitos</div> 
+                    <div><? echo Form::textarea("historia.habitos", "class='input-xlarge' placeholder='Escriba aquí'", $obj->habitos) ?></div>
+
+                </div>
+                <div class="tab-pane" id="tab4">
+
+                    <div>Menarquia</div> 
+                    <div><? echo Form::textarea("historia.menarquia", "class='input-xlarge' placeholder='Escriba aquí'", $obj->menarquia) ?></div>
+                    <div>Ciclos regulares</div>
+                    <div><? echo Form::textarea("historia.ciclosregulares", "class='input-xlarge' placeholder='Escriba aquí'", $obj->ciclosregulares) ?></div>
+                    <div>Escala</div>
+                    <div><? echo Form::textarea("historia.escala", "class='input-xlarge' placeholder='Escriba aquí'", $obj->escala) ?></div>
+                    <div>Gestaciones</div>
+                    <div><? echo Form::textarea("historia.gestaciones", "class='input-xlarge' placeholder='Escriba aquí'", $obj->gestaciones) ?></div>
+                    <div>Edad inicio sexual</div>
+                    <div><? echo Form::textarea("historia.edadiniciosexual", "class='input-xlarge' placeholder='Escriba aquí'", $obj->edadiniciosexual) ?></div>
+                    <div>Número parejas</div>
+                    <div><? echo Form::textarea("historia.nroparejas", "class='input-xlarge' placeholder='Escriba aquí'", $obj->nroparejas) ?></div>
+                    <div>Antecedentes de infecciones</div>
+                    <div><? echo Form::textarea("historia.antinfecciones", "class='input-xlarge' placeholder='Escriba aquí'", $obj->antinfecciones) ?></div>
+                    <div>Citologías</div>
+                    <div><? echo Form::textarea("historia.citologias", "class='input-xlarge' placeholder='Escriba aquí'", $obj->citologias) ?></div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="tab-pane" id="tab2principal">
+        <!--Datos de la consulta  -->
+
+        <? echo Form::hidden("consulta.historia_id", null, $idhistoria) ?>
+        <? echo Form::hidden("consulta.id",null,$objcon->id)?>
+        <div class="text-info">Motivo de consulta</div>
+        <div><? echo Form::textarea("consulta.motivoconsulta", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->motivoconsulta) ?></div>
+        <div class="text-info">Enfermedad actual</div>
+        <div><? echo Form::textarea("consulta.enfermedadactual", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->enfermedadactual) ?></div>
+        <div class="text-info">Examen físico</div>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td colspan="7"><center><div class="text-success">Signos vitales</div></center></td>
+
+
+            </tr>
+            <tr>
+                <td>TA</td>
+                <td>FR</td>
+                <td>P</td>
+                <td>R</td>
+                <td>Temp</td>
+                <td>Peso</td>
+                <td>Talla</td>
+            </tr>
+            <tr>
+                <td><? echo Form::text("consulta.ef_ta", "class='input-small'", $objcon->ef_ta) ?></td>
+                <td><? echo Form::text("consulta.ef_fr", "class='input-small'", $objcon->ef_fr) ?></td>
+                <td><? echo Form::text("consulta.ef_p", "class='input-small'", $objcon->ef_p) ?></td>
+                <td><? echo Form::text("consulta.ef_r", "class='input-small'", $objcon->ef_r) ?></td>
+                <td><? echo Form::text("consulta.ef_t", "class='input-small'", $objcon->ef_t) ?></td>
+                <td><? echo Form::text("consulta.ef_peso", "class='input-small'", $objcon->ef_peso) ?></td>
+                <td><? echo Form::text("consulta.ef_talla", "class='input-small'", $objcon->ef_talla) ?></td>
+            </tr>
+        </table>
+        <div class="text-info">Piel y faneras</div>
+        <div><? echo Form::textarea("consulta.ef_pielyfaneras", "class='input-xxlarge' placeholder='Escriba aquí'", $objcon->ef_pielyfaneras) ?></div>
+        <div class="text-info">Cabeza</div>
+        <div><? echo Form::textarea("consulta.ef_cabeza", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_cabeza) ?></div>
+        <div class="text-info">Ojos</div>
+        <div><? echo Form::textarea("consulta.ef_ojos", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_ojos) ?></div>
+        <div class="text-info">Nariz</div>
+        <div><? echo Form::textarea("consulta.ef_nariz", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_nariz) ?></div>
+        <div class="text-info">Oídos</div>
+        <div><? echo Form::textarea("consulta.ef_oidos", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_oidos) ?></div>
+        <div class="text-info">Boca</div>
+        <div><? echo Form::textarea("consulta.ef_boca", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_boca) ?></div>
+        <div class="text-info">Cuello</div>
+        <div><? echo Form::textarea("consulta.ef_cuello", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_cuello) ?></div>
+        <div class="text-info">Torax</div>
+        <div><? echo Form::textarea("consulta.ef_torax", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_torax) ?></div>
+        <div class="text-info">Corazón</div>
+        <div><? echo Form::textarea("consulta.ef_corazon", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_corazon) ?></div>
+        <div class="text-info">Pulmones</div>
+        <div><? echo Form::textarea("consulta.ef_pulmones", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_pulmones) ?></div>
+        <div class="text-info">Abdomen</div>
+        <div><? echo Form::textarea("consulta.ef_abdomen", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_abdomen) ?></div>
+        <div class="text-info">Extremidades</div>
+        <div><? echo Form::textarea("consulta.ef_extremidades", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_extremidades) ?></div>
+        <div class="text-info">Genitourinario</div>
+        <div><? echo Form::textarea("consulta.ef_genitourinario", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_genitourinario) ?></div>
+        <div class="text-info">E.Neurológico Elemental</div>
+        <div><? echo Form::textarea("consulta.ef_neurologicoelemental", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_neurologicoelemental) ?></div>
+        <div class="text-info">Impresión diagnóstica</div>
+        <div><? echo Form::textarea("consulta.ef_impresiondiagnostica", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->ef_impresiondiagnostica) ?></div>
+
+    </div>
+    <div class="tab-pane" id="tab3principal">
+        <div class="text-info">Diagnóstico</div>
+        <div><? echo Form::textarea("consulta.diagnostico", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->diagnostico) ?></div>
+        <div class="text-info">Tratamiento</div>
+        <div><? echo Form::textarea("consulta.tratamiento", "class='input-xxlarge' placeholder='Escriba aquí'",$objcon->tratamiento) ?></div>
+    </div>
+    <? Form::close() ?>
+</div>
+</div>
+
+
+
+</div>
+</div>
+</div>

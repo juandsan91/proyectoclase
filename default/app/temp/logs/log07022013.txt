@@ -1,0 +1,5 @@
+[Thu, 07 Feb 13 11:25:38 -0500][DEBUG] DESCRIBE `historia`
+[Thu, 07 Feb 13 11:25:38 -0500][DEBUG] SELECT id,tipoidentificacion_id,identificacion,tipoprograma_id,tipoeps_id,nombres,fechanacimiento,procedencia,residencia,creado_at,telefono1,telefono2,tipoestadocivil_id,acudiente,telefonoacudiente,tipogenero_id,antecedentesfami,antecedentespersonales,apellidos,habitos,tiporegimen_id,carneteps,tipozona_id,menarquia,ciclosregulares,escala,gestaciones,edadiniciosexual,nroparejas,antinfecciones,citologias FROM historia
+[Thu, 07 Feb 13 11:25:45 -0500][DEBUG] DESCRIBE `historia`
+[Thu, 07 Feb 13 11:26:02 -0500][DEBUG] DESCRIBE `historia`
+[Thu, 07 Feb 13 11:26:02 -0500][DEBUG] SELECT id,tipoidentificacion_id,identificacion,tipoprograma_id,tipoeps_id,nombres,fechanacimiento,procedencia,residencia,creado_at,telefono1,telefono2,tipoestadocivil_id,acudiente,telefonoacudiente,tipogenero_id,antecedentesfami,antecedentespersonales,apellidos,habitos,tiporegimen_id,carneteps,tipozona_id,menarquia,ciclosregulares,escala,gestaciones,edadiniciosexual,nroparejas,antinfecciones,citologias FROM historia

@@ -1,0 +1,40 @@
+<?echo View::partial("consultorio/header_remision",false,array("idconsulta"=>$idconsulta,"paciente"=>$historia->nombres." ".$historia->apellidos)); ?>
+
+<!-- SECCIONES -->
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("consultorio/menu_remision", false, array("idconsulta" => $idconsulta)) ?>
+        </div>
+        <div class="span10">
+            <div><? echo View::content() ?></div>
+            <?echo Form::open()?>
+            <table>
+                <? echo Form::hidden("idconsulta", null, $idconsulta) ?>
+                <? echo Form::hidden("idremision", null, $obj->id) ?>
+                <tr><td style="width: 90%"><legend>Modificar remisión</legend>
+            </td><td style="width: 10%"><? echo Form::submit("Guardar remisión", "class='btn btn-primary'") ?></td></tr>
+    </table>
+            <div>
+                
+                <div class="tab-content">
+                <div class="tab-pane active" id="tab1">
+                   <div><? echo Form::label("EPS Destino", "tipoeps") ?>
+                        <? echo Form::dbSelect("tipoeps.tipoeps_id", "nombre", null, null, null,$obj->tipoeps_id) ?></div>
+                    <div> <? echo Form::label("Observaciones", "remision.observaciones") ?></div>
+                    <div> <? echo Form::textarea("remision.observaciones", "class='input-large' placeholder='Observaciones'",$obj->observaciones) ?></div>
+                    <div> <? echo Form::label("Exámenes complementarios", "remision.examenescomplementarios") ?></div>
+                    <div> <? echo Form::textarea("remision.examenescomplementarios", "class='input-large' placeholder='Exámenes complementarios',$obj->examenescomplementarios") ?></div>
+                   
+                    <div> <? echo Form::label("Evolución", "remision.evolucion") ?></div>
+                    <div><? echo Form::textarea("remision.evolucion", "class='input-large' placeholder='Evolución'",$obj->evolucion) ?></div>
+                    <div> <? echo Form::label("Resumen historia", "remision.resumenhistoria") ?></div>
+                    <div><? echo Form::textarea("remision.resumenhistoria", "class='input-large' placeholder='Resumen historia'",$obj->resumenhistoria) ?></div>
+                </div>
+                
+            </div>
+            </div>
+        </div>
+        <?echo Form::close()?>
+</div>
+</div>

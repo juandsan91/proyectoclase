@@ -1,0 +1,37 @@
+<? 
+echo View::partial("consultorio/header_remision",false,array("idconsulta"=>$idconsulta,"paciente"=>$historia->nombres." ".$historia->apellidos)); ?>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("consultorio/menu_remision",false,array("idconsulta"=>$idconsulta)) ?>
+        </div>
+        <div class="span10">
+            <table class="table table-bordered table-striped">
+                <thead><tr style="text-align:center;font-weight:bold;">
+                        <th>Id</th>
+                        <th>Fecha creación</th>
+                        <th>Modificar</th>
+                        <th>Eliminar</th>
+                    </tr></thead>   
+               
+                <tbody>
+                   <?foreach($array as $obj){?>
+                    <tr>
+                        <td><?echo $obj->id?></td>
+                        <td><?echo $obj->creado_at?></td>
+                        
+                        <td><?echo Html::linkAction("modificar/$obj->id", Html::img("figuras/editar.png"))?></td>
+                        <td>
+                            <?echo Js::link("remision/eliminar/$obj->id/$idconsulta",  Html::img("figuras/eliminar.png"), "Está seguro?")?>
+                        </td>
+                    </tr>
+                   <?}?> 
+                </tbody>
+                 <tfoot>
+                    <tr><th colspan="100"><div class="paginador-tabla"><span style="float:right;margin-right:20px;"><b>Total registros: 2</b></span></div></th></tr>
+                </tfoot>
+            </table> 
+        </div>
+    </div>
+</div>

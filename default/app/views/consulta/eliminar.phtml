@@ -1,0 +1,23 @@
+<? echo View::partial("consultorio/header_consultas") ?>
+
+<!-- SECCIONES -->
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <? echo View::partial("consultorio/menu_consultas", false, array("idhistoria" => $idhistoria)) ?>
+        </div>
+        <div class="span10">
+            <div><? echo View::content()?></div>
+            <? echo Form::open() ?>
+            
+            <table>
+                <tr><td style="width: 90%"><legend>¿Está seguro de eliminar la consulta <?echo $objcon->id?>?</legend>
+            </td><td style="width: 10%"><? echo Form::submit("Eliminar","class='btn btn-primary'")?></td>
+               <td><?echo Html::linkAction("index/$idhistoria", "Cancelar","class='btn btn-primary'")?>
+                <?echo Form::hidden("idconsulta", null, $objcon->id)?></td></tr>
+                <?echo Form::hidden("idhistoria", null, $obj->id)?></td></tr>
+            </table>
+            <?echo Form::close()?>
+        </div>
+    </div>
+</div>
